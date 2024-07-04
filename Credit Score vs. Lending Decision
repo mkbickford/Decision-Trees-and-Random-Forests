@@ -10,7 +10,7 @@ df.head()
 plt.figure(figsize=(10,6))
 df[df['credit.policy']==1]['fico'].hist(alpha=0.5,color='blue',bins=30,label='Credit Policy = 1')
 df[df['credit.policy']==0]['fico'].hist(alpha=0.5,color='red',bins=30,label= 'Credit Policy = 0')
-plt.legend()
+plt.legend(loc='upper center')
 plt.xlabel('FICO')
 
 final_data = df.drop('purpose', axis = 1)
@@ -32,7 +32,7 @@ print('\n')
 print(classification_report(y_test,predictions))
 
 from sklearn.ensemble import RandomForestClassifier
-rfc = RandomForestClassifier()
+rfc = RandomForestClassifier(n_estimators=600)
 rfc.fit(X_train,y_train)
 predictions = rfc.predict(X_test)
 print(confusion_matrix(y_test,predictions))
